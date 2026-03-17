@@ -68,8 +68,35 @@ public class Main {
         System.out.println("\n=== PART D: Exception Handling ===");
         // TODO: Use try/catch to demonstrate:
         //   1. Trying to remove an employee that doesn't exist
+        try {
+            employeeManager.removeEmployee(22);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Illegal Argument error: "
+                    + e.getMessage());
+        }catch (Exception e) {
+            System.out.println("General error: "
+                    + e.getMessage());
+        }
         //   2. Trying to promote an employee that's already a Manager
+        try {
+            employeeManager.promoteToManager(7, 9);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Illegal Argument error: "
+                    + e.getMessage());
+        }catch (Exception e) {
+            System.out.println("General error: "
+                    + e.getMessage());
+        }
         //   3. Trying to create an Employee with invalid data (negative salary)
+        try {
+            Employee emp2 =  new Employee(6, "Ahmed", "Engineering", -3500);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Illegal Argument error: "
+                    + e.getMessage());
+        }catch (Exception e) {
+            System.out.println("General error: "
+                    + e.getMessage());
+        }
         // Each try/catch should print the error message gracefully
 
     }

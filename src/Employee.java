@@ -23,7 +23,7 @@ public class Employee {
     //       Must validate: name not null/empty, department not null/empty, salary not negative
     public Employee(int id, String name, String department, double salary) {
         if(name == null || name == "" || department == null || department == "" || salary < 0)
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("invalid data");
 
         this.id = id;
         this.name = name;

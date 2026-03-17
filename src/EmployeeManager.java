@@ -102,9 +102,14 @@ public class EmployeeManager {
      */
     public void removeEmployee(int id) {
         // TODO: Find the employee by ID
+        Employee employee = employeeMap.get(id);
         // TODO: If not found, throw IllegalArgumentException with message:
         //       "Employee with ID <id> not found"
+        if (employee == null)
+            throw new IllegalArgumentException("Employee with ID " + id + " not found");
         // TODO: Remove from both the list and the map
+        employees.remove(employee);
+        employeeMap.remove(id);
     }
 
     /**
@@ -118,13 +123,29 @@ public class EmployeeManager {
      * @throws IllegalArgumentException if no employee with that ID exists
      * @throws IllegalArgumentException if the employee is already a Manager
      */
-    //public Manager promoteToManager(int id, int teamSize) {
+    public Manager promoteToManager(int id, int teamSize) {
         // TODO: Find the employee by ID (throw if not found)
+        Employee employee = employeeMap.get(id);
+        if (employee == null)
+            throw new IllegalArgumentException("Employee with ID " + id + " not found");
+
         // TODO: Check if already a Manager (use instanceof), throw if so
         //       Message: "Employee <id> is already a Manager"
+        if (employee instanceof Manager)
+            throw new IllegalArgumentException("Employee " + id + " is already a Manager");
+
         // TODO: Create a new Manager with the same details + teamSize
+        Manager mng = new Manager(employee.getId(), employee.getName(), employee.getDepartment(),
+                employee.getSalary(), teamSize);
+
         // TODO: Remove the old employee, add the new Manager
+        employees.remove(employee);
+        employeeMap.remove(id);
+
+        employees.add(mng);
+        employeeMap.put(id, mng);
+
         // TODO: Return the new Manager
-      //  return null;
-    //}
+        return mng;
+    }
 }
